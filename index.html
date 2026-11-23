@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NilaVoyage — Travel &amp; Tourism Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="nav-wrap">
+      <a href="#top" class="logo">
+        <span class="logo-mark">NV</span>
+        <span class="logo-text">NilaVoyage</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="#destinations">Destinations</a>
+        <a href="#bookings-section">Bookings</a>
+        <a href="#why-us">Why NilaVoyage</a>
+      </nav>
+
+      <button type="button" class="btn-coral" id="openModalTop">+ Book a Trip</button>
+    </div>
+  </header>
+
+  <!-- Hero + Search Bar -->
+  <section class="hero" id="top">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tag">Curated Journeys &amp; Tour Operations</p>
+      <h1>Discover Places That Stay With You</h1>
+      <p class="hero-sub">
+        Plan signature escapes, manage guest reservations, and coordinate departures from one clean workspace.
+      </p>
+
+      <form class="search-box" id="heroSearchForm">
+        <div class="field">
+          <label for="destInput">Destination or Route</label>
+          <input
+            type="text"
+            id="destInput"
+            placeholder="Jaipur, Manali, Goa, Udaipur..."
+          />
+        </div>
+        <div class="field">
+          <label for="dateInput">Departure Date</label>
+          <input type="date" id="dateInput" value="2026-12-15" />
+        </div>
+        <div class="field">
+          <label for="guestsInput">Travelers</label>
+          <select id="guestsInput">
+            <option value="1">1 Traveler</option>
+            <option value="2" selected>2 Travelers</option>
+            <option value="4">4 Travelers</option>
+            <option value="6">6 Travelers</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-coral search-btn">Explore Trips</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Destinations & Packages Showcase -->
+  <section class="section container" id="destinations">
+    <div class="section-top">
+      <div>
+        <span class="eyebrow">Signature Packages</span>
+        <h2>Handpicked Destinations</h2>
+      </div>
+
+      <div class="filter-pills" id="categoryPills">
+        <button type="button" class="pill active" data-cat="All">All</button>
+        <button type="button" class="pill" data-cat="Heritage">Heritage</button>
+        <button type="button" class="pill" data-cat="Mountains">Mountains</button>
+        <button type="button" class="pill" data-cat="Coastal">Coastal</button>
+      </div>
+    </div>
+
+    <div class="cards-grid" id="packagesGrid"></div>
+  </section>
+
+  <!-- Booking Management Section -->
+  <section class="section bookings-band" id="bookings-section">
+    <div class="container">
+      <div class="section-top">
+        <div>
+          <span class="eyebrow">Reservations &amp; Desk</span>
+          <h2>Active Trip Bookings</h2>
+        </div>
+
+        <div class="summary-strip" id="summaryStrip"></div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="bookings-table">
+          <thead>
+            <tr>
+              <th>Booking ID</th>
+              <th>Guest Name</th>
+              <th>Package</th>
+              <th>Date</th>
+              <th>Guests</th>
+              <th>Total Fare</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="bookingsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Strip -->
+  <section class="section container" id="why-us">
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feat-num">01</span>
+        <h3>Verified Local Stays</h3>
+        <p>Hand-checked boutique hotels, heritage havelis, and coastal stays with transparent pricing.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-num">02</span>
+        <h3>Seamless Group &amp; Solo Planning</h3>
+        <p>Instant fare calculation per guest, date tracking, and clear confirmation states in one view.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-num">03</span>
+        <h3>On-Ground Support</h3>
+        <p>Dedicated route planning with flexible schedule updates and quick reservation management.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <span class="logo-text">NilaVoyage</span>
+        <p>Travel &amp; Tourism Management Frontend</p>
+      </div>
+      <p class="footer-note">Built with HTML, CSS &amp; JavaScript</p>
+    </div>
+  </footer>
+
+  <!-- Booking Modal -->
+  <div class="modal-backdrop" id="bookingModal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
+      <div class="modal-head">
+        <h3 id="modalHeading">Book a Tour Package</h3>
+        <button type="button" class="x-btn" id="closeModalBtn" aria-label="Close">✕</button>
+      </div>
+
+      <form id="createBookingForm" class="modal-form">
+        <label>
+          <span>Traveler Name</span>
+          <input type="text" name="guestName" placeholder="e.g., Aarav Sharma" required />
+        </label>
+
+        <label>
+          <span>Select Destination Package</span>
+          <select name="packageId" id="packageSelect"></select>
+        </label>
+
+        <div class="row-2">
+          <label>
+            <span>Travel Date</span>
+            <input type="date" name="travelDate" id="modalDate" value="2026-12-15" required />
+          </label>
+          <label>
+            <span>Travelers</span>
+            <input type="number" name="guests" id="modalGuests" min="1" max="15" value="2" required />
+          </label>
+        </div>
+
+        <div class="fare-preview">
+          <span>Estimated Total</span>
+          <strong id="farePreview">₹0</strong>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-outline" id="cancelModalBtn">Cancel</button>
+          <button type="submit" class="btn-coral">Confirm Booking</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
